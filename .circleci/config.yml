@@ -21,9 +21,12 @@ jobs:
             . venv/bin/activate
             python3 manage.py test
 
+
 workflows:
   Django-Test-workflow:
     jobs:
       - Build-and-Test
       - docker/publish:
           image: circleci-django
+          requires:
+            - Build-and-Test
